@@ -1,8 +1,8 @@
-import React from 'react';
-import {HashRouter as Router, Link, Route, Switch} from 'react-router-dom';
+import React from 'react'
+import {HashRouter as Router, Link, Route, Switch} from 'react-router-dom'
 
-import Home from '../containers/home.js';
-import Login from '../containers/login.js';
+import Home from '../containers/home.js'
+import Login from '../containers/login.js'
 
 function RouterCore(props) {
   return (

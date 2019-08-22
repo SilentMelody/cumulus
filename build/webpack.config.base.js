@@ -1,9 +1,9 @@
-const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 //样式文件分别打包
-const ExtractTextPluginCss = new ExtractTextPlugin('css/[name]/[name]-one.css');
-const ExtractTextPluginScss = new ExtractTextPlugin('css/[name]/[name]-two.css');
-const ExtractTextPluginLess = new ExtractTextPlugin('css/[name]/[name]-three.css');
+const ExtractTextPluginCss = new ExtractTextPlugin('css/[name]/[name]-one.css')
+const ExtractTextPluginScss = new ExtractTextPlugin('css/[name]/[name]-two.css')
+const ExtractTextPluginLess = new ExtractTextPlugin('css/[name]/[name]-three.css')
 
 module.exports = {
   entry: '@/index.js',
@@ -132,4 +132,4 @@ module.exports = {
       },
     ]
   }
-};
+}

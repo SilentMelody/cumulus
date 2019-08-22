@@ -1,16 +1,16 @@
-const webpack = require('webpack');
-const merge = require('webpack-merge');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack')
+const merge = require('webpack-merge')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const baseWebpackConfig = require('./webpack.config.base');
+const baseWebpackConfig = require('./webpack.config.base')
 //样式文件分别打包
-const ExtractTextPluginCss = new ExtractTextPlugin('css/[name]/[name]-one.css');
-const ExtractTextPluginScss = new ExtractTextPlugin('css/[name]/[name]-two.css');
-const ExtractTextPluginLess = new ExtractTextPlugin('css/[name]/[name]-three.css');
+const ExtractTextPluginCss = new ExtractTextPlugin('css/[name]/[name]-one.css')
+const ExtractTextPluginScss = new ExtractTextPlugin('css/[name]/[name]-two.css')
+const ExtractTextPluginLess = new ExtractTextPlugin('css/[name]/[name]-three.css')
 
-const env = require('../config/' + process.env.env_config + '.env.js');
-console.log("==========>" + process.env.env_config);
+const env = require('../config/' + process.env.env_config + '.env.js')
+console.log("==========>" + process.env.env_config)
 
 const webpackConfig = merge(baseWebpackConfig, {
   mode: "development",
@@ -33,6 +33,12 @@ const webpackConfig = merge(baseWebpackConfig, {
     watchOptions: {//监听文件变化，当它们修改后会重新编译。
       aggregateTimeout: 500,//当第一个文件更改，会在重新构建前增加延迟。以毫秒为单位
       poll: false,//是否开启轮询，如果开启则设置定时间隔时间
+    },
+    proxy: {
+      '/cumulus': {
+        target: 'http://localhost:3001',
+        changeOrigin: true
+      }
     }
   },
   plugins: [
@@ -46,7 +52,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     new HtmlWebpackPlugin({
       template: "index.html",//模板
       filename: "index.html",//文件名
-      inject: true,//true: 默认值,script标签位于html文件的body底部;body:script标签位于html文件的body底部;head: script标签位于html文件的head中;false: 不插入生成的js文件，这个几乎不会用到的
+      inject: true,//true: 默认值,script标签位于html文件的body底部body:script标签位于html文件的body底部head: script标签位于html文件的head中false: 不插入生成的js文件，这个几乎不会用到的
       minify: { // 压缩 HTML 的配置
         collapseWhitespace: true,
         removeComments: true,
@@ -54,6 +60,6 @@ const webpackConfig = merge(baseWebpackConfig, {
       }
     }),
   ]
-});
+})
 
-module.exports = webpackConfig;
+module.exports = webpackConfig

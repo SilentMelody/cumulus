@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 class Counter extends React.Component {
   render() {
-    const {value, onIncreaseClick, onDecreaseClick} = this.props;
+    const {value, onIncreaseClick, onDecreaseClick} = this.props
     return (
       <div>
         <span>{value}</span>
@@ -19,6 +19,6 @@ Counter.propTypes = {
   value: PropTypes.number.isRequired,
   onIncreaseClick: PropTypes.func.isRequired,
   onDecreaseClick: PropTypes.func.isRequired
-};
+}
 
 export default Counter

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import styles from '../../scss/home.scss';
-import Counter from "../../modules/counter/index.jsx";
+import React, { useState } from 'react'
+import styles from '../../scss/home.scss'
+import Counter from "../../modules/counter/index.jsx"
 
 function Home(props) {
-  const {value, onIncreaseClick, onDecreaseClick, userInfo} = props;
+  const {value, onIncreaseClick, onDecreaseClick, userInfo} = props
   return (
     <div>
       <Counter value={value} onDecreaseClick={onDecreaseClick} onIncreaseClick={onIncreaseClick}/>

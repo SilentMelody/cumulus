@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
-import styles from "../../scss/login.scss";
+import React, { useState } from 'react'
+import styles from "../../scss/login.scss"
 
 function Login(props) {
-  const [userName, setUserName] = useState('');
-  const [userPassword, setUserPassword] = useState('');
+  const [userName, setUserName] = useState('')
+  const [userPassword, setUserPassword] = useState('')
 
   const login = () => {
-    const {onLogin} = props;
+    const {onLogin} = props
     const userInfo = {
       u_name: userName,
       u_pwd: userPassword
-    };
-    onLogin(userInfo, loginCallback);
+    }
+    onLogin(userInfo, loginCallback)
   }
 
   const loginCallback = () => {
-    const {history} = props;
-    history.push('/home');
+    const {history} = props
+    history.push('/home')
   }
 
   return (
