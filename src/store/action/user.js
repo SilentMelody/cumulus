@@ -11,8 +11,4 @@ export const login = (loginInfo) => dispatch => {
   }).catch(e => {
     console.log(e)
   })
-  // return {
-  //   type: ActionTypes.USER_LOGIN,
-  //   payload: loginInfo
-  // }
 }
