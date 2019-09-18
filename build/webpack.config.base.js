@@ -90,28 +90,10 @@ module.exports = {
         })
       },
       {
-        test: /\.less$/,
-        use: ExtractTextPluginLess.extract({
-          use: [
-            {
-              loader: "css-loader?modules",
-              // options: {importLoaders: 2}
-            },
-            {
-              loader: "px2rem-loader",
-              options: {
-                remUnit: 40//设计稿/10
-              }
-            },
-            {
-              loader: "less-loader"
-            },
-            {
-              loader: 'postcss-loader',
-              options: {plugins: [require("autoprefixer")("last 100 versions")]}
-            }
-          ],
-          fallback: "style-loader"
+        test:/\.less$/,
+        use:ExtractTextPlugin.extract({ //分离less编译后的css文件
+          fallback:'style-loader',
+          use:['css-loader','less-loader']
         })
       },
       {

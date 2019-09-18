@@ -1,14 +1,28 @@
 import React, { useState } from 'react'
-import styles from '../../scss/home.scss'
-import Counter from "../../modules/counter/index.jsx"
+import '../../style/scss/home.less'
+import PageList from "../../modules/pageList/index.jsx"
 
 function Home(props) {
-  const {value, onIncreaseClick, onDecreaseClick, userInfo} = props
+  const [listActive, setListActive] = useState(false)
+  const showList = () => {
+    setListActive(true)
+  }
+  const hideList = () => {
+    setListActive(false)
+  }
+  const goPageSelect = (selected) => {
+    const {history} = props
+    history.push('/' + selected)
+  }
   return (
-    <div>
-      <Counter value={value} onDecreaseClick={onDecreaseClick} onIncreaseClick={onIncreaseClick}/>
-      <div className={styles.main}>Hello, Welcome React...</div>
-      <h1>Hello,{userInfo.u_name} Welcome React...</h1>
+    <div className="home-container">
+      <div className={listActive ? "cloud-box active" : "cloud-box"} onMouseEnter={() => showList()}>
+        <div className="text">Cumulus</div>
+      </div>
+      <PageList listActive={listActive} onMouseLeaveList={() => hideList()} onPageSelect={(selected) => goPageSelect(selected)}></PageList>
+      <div className="sign">
+        @李志豪
+      </div>
     </div>
   )
 }

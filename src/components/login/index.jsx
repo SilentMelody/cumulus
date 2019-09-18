@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import styles from "../../scss/login.scss"
 
 function Login(props) {
   const [userName, setUserName] = useState('')
@@ -20,14 +19,14 @@ function Login(props) {
   }
 
   return (
-    <div className={styles.main}>
-      <div className={styles.mobile}>
+    <div>
+      <div>
         <input value={userName} onChange={(event) => setUserName(event.target.value)} type="text"/>
       </div>
-      <div className={styles.password}>
+      <div>
         <input value={userPassword} onChange={(event) => setUserPassword(event.target.value)} type="password"/>
       </div>
-      <div className={styles.login}>
+      <div>
         <button onClick={login}>登录</button>
       </div>
     </div>

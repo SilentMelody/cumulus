@@ -1,0 +1,145 @@
+.home-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: #5588AA;
+  overflow: hidden;
+  .cloud-box {
+    position: relative;
+    margin: 0 auto;
+    width: 180px;
+    height: 180px;
+    border-radius: 90px;
+    background: url("../image/cloud@2x.png") no-repeat center 35%;
+    background-size: 70%;
+    z-index: 3;
+    .text {
+      position: absolute;
+      width: 100%;
+      line-height: 30px;
+      font-size: 20px;
+      color: #fff;
+      bottom: 15%;
+      text-align: center;
+    }
+  }
+  .list-circle {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    left: 50%;
+    top: 50%;
+    margin-top: -250px;
+    margin-left: -250px;
+    //transform-origin: right center;
+    animation:transMix3dAnimation 3s infinite ease-in-out;
+    -moz-animation:transMix3dAnimation 3s infinite ease-in-out; /* Firefox */
+    -webkit-animation:transMix3dAnimation 3s infinite ease-in-out; /* Safari and Chrome */
+    -o-animation:transMix3dAnimation 3s infinite ease-in-out; /* Opera */
+    &.active {
+      animation-play-state:paused;
+      -webkit-animation-play-state:paused; /* Safari 和 Chrome */
+      .list-item {
+        height: 50px;
+        margin-top: -25px;
+        width: 300px;
+        .item-text {
+          display: initial;
+          width: 100px;
+          height: 40px;
+        }
+      }
+    }
+    .list-item {
+      transition: all 0.2s linear;
+      position: absolute;
+      height: 20px;
+      width: 150px;
+      top: 50%;
+      margin-top: -15px;
+      border-radius: 10px;
+      perspective: 300px;
+      color: #000;
+      cursor: pointer;
+      span {
+        position: absolute;
+        height: 30px;
+        transition: all 0.2s linear;
+        display: none;
+        padding: 0 30px;
+        border-radius: 10px;
+      }
+      &:nth-child(4n+1) {
+        transform: rotateZ(-45deg);
+      }
+      &:nth-child(4n+2) {
+        transform: rotateZ(-15deg);
+      }
+      &:nth-child(4n+3) {
+        transform: rotateZ(15deg);
+      }
+      &:nth-child(4n+4) {
+        transform: rotateZ(45deg);
+      }
+      &.left {
+        right: 50%;
+        padding-right: 100px;
+        transform-origin: right center;
+        .item-content {
+          transform-origin: right center;
+          transform: rotateY(45deg);
+        }
+        .item-text {
+          left: 4px;
+        }
+      }
+      &.right {
+        left: 50%;
+        padding-left: 100px;
+        transform-origin: left center;
+        .item-content {
+          transform-origin: left center;
+          transform: rotateY(-45deg);
+          text-align: right;
+        }
+        .item-text {
+          right: 4px;
+        }
+      }
+      .item-content {
+        transform-style: preserve-3d;
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        position: relative;
+        background: rgba(255, 255, 255, 0.3);
+      }
+      .item-text {
+        display: none;
+        position: absolute;
+        width: 0;
+        height: 0;
+        line-height: 40px;
+        top: 50%;
+        margin-top: -20px;
+        border-radius: 10px;
+        background: white;
+        padding: 0 20px;
+        text-align: center;
+        font-size: 14px;
+      }
+    }
+  }
+  @keyframes transMix3dAnimation {
+    /* matrix3d(x轴缩放, 0, 0, 0, 0, y轴缩放, 0, 0, 0, 0, z缩放, 0, x轴偏移, y轴偏移, z轴偏移, 1) */
+    0%  {transform: rotateZ(0deg);}
+    100% {transform: rotateZ(360deg);}
+  }
+  @-webkit-keyframes transMix3dAnimation {
+    0%  {transform: rotateZ(0deg);}
+    100% {transform: rotateZ(360deg);}
+  }
+}
