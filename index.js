@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import 'lib-flexible'
 import {Provider} from 'react-redux'
 import store from './src/store'
 import RouterCore from './src/router/index.jsx'
 
-import './src/style/scss/base.less'
+import './src/style/less/base.less'
+import './src/style/less/mixins.less'
 import 'antd/dist/antd.less'
 
 ReactDOM.render(

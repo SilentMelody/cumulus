@@ -13,7 +13,7 @@ module.exports = {
     publicPath: "./"//引入资源文件的前缀公共路径
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '.css', '.scss'],
+    extensions: ['.js', '.jsx', '.json', '.css', '.less'],
     alias: {
       "@": path.join(__dirname, "..")
     }
@@ -49,37 +49,6 @@ module.exports = {
             {
               loader: "css-loader?modules",
               // options: {importLoaders: 1}//1代表css-loader后还需要几个loader
-            },
-            {
-              loader: "px2rem-loader",
-              options: {
-                remUnit: 40//设计稿/10
-              }
-            },
-            {
-              loader: 'postcss-loader',
-              options: {plugins: [require("autoprefixer")("last 100 versions")]}
-            }
-          ],
-          fallback: "style-loader"
-        })
-      },
-      {
-        test: /\.scss$/,
-        use: ExtractTextPluginScss.extract({
-          use: [
-            {
-              loader: "css-loader?modules",
-              // options: {importLoaders: 1}
-            },
-            {
-              loader: "px2rem-loader",
-              options: {
-                remUnit: 50//设计稿/10
-              }
-            },
-            {
-              loader: "sass-loader"
             },
             {
               loader: 'postcss-loader',

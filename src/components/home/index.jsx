@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import '../../style/scss/home.less'
+import '../../style/less/home.less'
 import PageList from "../../modules/pageList/index.jsx"
 
 function Home(props) {

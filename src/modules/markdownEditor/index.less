@@ -1,0 +1,51 @@
+.scrollBarBase {
+  &::-webkit-scrollbar{
+    width: 9px;
+    height: 10px;
+    padding-top: 5px;
+    &-track, &-button, &-track-piece, &-corner {
+      display: none;
+    }
+    &-thumb {
+      border-radius:10px;
+      height: 30px;
+      width: 5px;
+      border: none;
+      background: #ddd;
+    }
+    &-track-piece {
+      display: none;
+    }
+  }
+}
+.markdown-editor-container {
+  padding: 15px;
+  position: relative;
+  width: 800px;
+  height: 300px;
+  .markdown-editor-padding {
+    width: 100%;
+    height: 100%;
+    padding: 3px;
+    position: relative;
+    border-radius: 10px;
+    border: 1px solid #000;
+  }
+  textarea {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    border: none;
+    -webkit-appearance: none;
+    outline: none;
+    line-height: 28px;
+    font-size: 18px;
+    padding: 10px;
+    resize:none;
+    .scrollBarBase();
+  }
+  textarea::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: #bbbbbb;
+  }
+}
