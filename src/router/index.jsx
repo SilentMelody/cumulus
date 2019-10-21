@@ -1,8 +1,9 @@
 import React from 'react'
-import {HashRouter as Router, Link, Route, Switch} from 'react-router-dom'
+import {HashRouter as Router, Link, Route, Switch, BrowserRouter} from 'react-router-dom'
 
 import Home from '../containers/home.js'
-import Note from '../containers/index.js'
+import Note from '../containers/note.js'
+import NoteAdd from '../containers/noteAdd.js'
 import Login from '../containers/login.js'
 
 function RouterCore(props) {
@@ -11,7 +12,8 @@ function RouterCore(props) {
       <Switch>
         <Route exact path='/' component={Home}/>
         <Route path='/home' component={Home}/>
-        <Route path='/笔记' component={Note}/>
+        <Route exact path='/笔记' component={Note}/>
+        <Route path='/笔记/add' component={NoteAdd}/>
         <Route path='/login' component={Login}/>
         {/*<Route path='/To-Do' component={Home}/>*/}
         {/*<Route path='/收藏' component={Home}/>*/}

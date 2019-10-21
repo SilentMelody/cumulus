@@ -60,7 +60,7 @@ module.exports = {
       },
       {
         test:/\.less$/,
-        use:ExtractTextPlugin.extract({ //分离less编译后的css文件
+        use:ExtractTextPluginLess.extract({ //分离less编译后的css文件
           fallback:'style-loader',
           use:['css-loader','less-loader']
         })

@@ -9,6 +9,8 @@ import './src/style/less/base.less'
 import './src/style/less/mixins.less'
 import 'antd/dist/antd.less'
 
+console.log(process.env.NODE_ENV)
+
 ReactDOM.render(
   <Provider store={store}>
     <RouterCore/>

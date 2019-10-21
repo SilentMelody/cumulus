@@ -1,11 +1,11 @@
 import {combineReducers, applyMiddleware, createStore} from 'redux'
 import thunk from 'redux-thunk'
-import counterReducer from './reducer/counter'
 import userReducer from './reducer/user'
+import noteReducer from './reducer/note'
 
 const reducers = combineReducers({
-  counterReducer,
-  userReducer
+  userReducer,
+  noteReducer
 })
 
 const store = createStore(reducers, applyMiddleware(thunk))

@@ -10,16 +10,14 @@ function Home(props) {
   const hideList = () => {
     setListActive(false)
   }
-  const goPageSelect = (selected) => {
-    const {history} = props
-    history.push('/' + selected)
-  }
   return (
     <div className="home-container">
-      <div className={listActive ? "cloud-box active" : "cloud-box"} onMouseEnter={() => showList()}>
-        <div className="text">Cumulus</div>
+      <PageList history={props.history}></PageList>
+      <div className="cloud-box">
+        <div className="text"> Cumulus
+          <span>积云，积少成多</span>
+        </div>
       </div>
-      <PageList listActive={listActive} onMouseLeaveList={() => hideList()} onPageSelect={(selected) => goPageSelect(selected)}></PageList>
       <div className="sign">
         @李志豪
       </div>
