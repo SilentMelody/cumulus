@@ -10,15 +10,8 @@ function NoteAddPage(props) {
   const {onNoteAdd, onSelectClassify, noteClassifyList, imgUpload} = props
   const [noteData, setNoteData] = useState('')
   const [classifyOptions, setClassifyOptions] = useState([])
-
-  const addNote = () => {
-    const param = {
-      title: 'title111',
-      text: 'text111',
-      classifyId: 2001
-    }
-    onNoteAdd(param)
-  }
+  const [title, setTitle] = useState('')
+  const [classifyId, setClassifyId] = useState(0)
 
   const initClassify = () => {
     const classify = {
@@ -55,6 +48,17 @@ function NoteAddPage(props) {
 
   const onClassifyChange = (value) => {
     console.log(value)
+    value instanceof Array ? setClassifyId(value[1]) : ''
+  }
+
+  const noteSave = () => {
+    const param = {
+      title: title,
+      text: noteData,
+      classifyId: classifyId
+    }
+    console.log(param)
+    onNoteAdd(param)
   }
 
   useEffect(() => {
@@ -68,6 +72,7 @@ function NoteAddPage(props) {
 
   return (
     <div id="note-add-page">
+      标题：<input type="text" onChange={(e) => setTitle(e.target.value)}/>
       <Cascader
         options={classifyOptions}
         expandTrigger="hover"
@@ -77,6 +82,7 @@ function NoteAddPage(props) {
         <MarkdownEditor onUploadImg={imgUpload} textChange={(value) => setNoteData(value)}></MarkdownEditor>
         <MarkdownPreview text={noteData}></MarkdownPreview>
       </div>
+      <div className="submit-btn" onClick={() => noteSave()}>提交</div>
     </div>
   )
 }
