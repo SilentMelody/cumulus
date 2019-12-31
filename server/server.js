@@ -24,4 +24,4 @@ bindUserController(app, connection)
 bindNoteController(app, connection)
 bindFileController(app, connection)
 
-app.listen(3001)
+app.listen(80)
