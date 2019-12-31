@@ -17,7 +17,6 @@ console.log("==========>" + process.env.env_config)
 
 const webpackConfig = merge(baseWebpackConfig, {
   mode: 'production',
-  devtool: 'cheap-module-source-map',
   plugins: [
     new webpack.DefinePlugin({
       'process.env': env
@@ -48,7 +47,6 @@ const webpackConfig = merge(baseWebpackConfig, {
     }),
   ],
   optimization: {
-    minimize: false,
     splitChunks: {
       chunks: 'all',//表示显示块的范围，有三个可选值：initial(初始块)、async(按需加载块)、all(全部块)(default=all)
       name: true,//拆分出来块的名字(Chunk Names)，默认由块名和hash值自动生成；
