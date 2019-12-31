@@ -39,7 +39,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       template: "index.html",//模板
       filename: "index.html",//文件名
       inject: true,//true: 默认值,script标签位于html文件的body底部body:script标签位于html文件的body底部head: script标签位于html文件的head中false: 不插入生成的js文件，这个几乎不会用到的
-      chunks: ["manifest", "vendors", "index"],// 页面模板需要加对应的js脚本，如果不加这行则每个页面都会引入所有的js脚本
+      // chunks: ["manifest", "vendors", "index"],// 页面模板需要加对应的js脚本，如果不加这行则每个页面都会引入所有的js脚本
       minify: { // 压缩 HTML 的配置
         collapseWhitespace: true,
         removeComments: true,
