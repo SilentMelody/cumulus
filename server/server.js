@@ -19,6 +19,7 @@ app.use(history())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, '../dist')))
+app.use(express.static(path.join(__dirname, '../static')))
 
 bindUserController(app, connection)
 bindNoteController(app, connection)
