@@ -11,6 +11,10 @@ const bindNoteController = require('./controller/note')
 const bindFileController = require('./controller/file')
 const connection = mysql.createConnection(dbConfig)
 
+app.use((req, res, next) => {
+    console.log('req ====>', req.path)
+    next()
+})
 app.use(history())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
