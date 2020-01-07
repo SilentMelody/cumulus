@@ -9,7 +9,16 @@ const history = require('connect-history-api-fallback')
 const bindUserController = require('./controller/user')
 const bindNoteController = require('./controller/note')
 const bindFileController = require('./controller/file')
-const connection = mysql.createConnection(dbConfig)
+let connection = mysql.createConnection(dbConfig)
+connection.on('error', function(err) {
+    console.log('mysql connection error ==> ', err.code, err.message);
+    if(err.code === 'PROTOCOL_CONNECTION_LOST') {
+        console.log('db error执行重连:' + err.message);
+        connection = mysql.createConnection(dbConfig)
+    } else {
+        console.log('其他异常 ====> ' + err.message);
+    }
+});
 
 app.use((req, res, next) => {
     console.log('req ====>', req.path)
