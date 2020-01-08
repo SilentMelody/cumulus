@@ -11,7 +11,7 @@ const env = require('../config/' + process.env.env_config + '.env.js')
 console.log("==========>" + process.env.env_config)
 
 const webpackConfig = merge(baseWebpackConfig, {
-  mode: 'development',
+  mode: 'production',
   module: {
     rules: [
       {
@@ -46,7 +46,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     ),
     new MiniCssExtractPlugin({
       filename: "[name].css",
-      chunkFilename: "[id].css"
+      chunkFilename: "[name].css"
     }),
     new HtmlWebpackPlugin({
       template: "index.html",//模板

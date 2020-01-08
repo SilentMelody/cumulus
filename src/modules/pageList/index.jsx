@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import './index.less'
-// import {Icon} from 'antd'
+import {Icon} from 'antd'
 
 function MenuList(props) {
   const pageList = [
@@ -20,7 +20,7 @@ function MenuList(props) {
   }
   return (
     <div className="menu-list">
-      {/*<Icon type="home" style={{color: '#fff', float: 'left', marginRight: '10px', cursor: 'pointer'}} onClick={() => goPageSelect('')} />*/}
+      <Icon type="home" style={{color: '#fff', float: 'left', marginRight: '10px', cursor: 'pointer'}} onClick={() => goPageSelect('')} />
       {
         pageList.map((item, index) => {
           return (

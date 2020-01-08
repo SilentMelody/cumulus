@@ -16,7 +16,7 @@ const webpackConfig = merge(baseWebpackConfig, {
         test: /\.css/,
         use: [
           'style-loader',
-          "css-loader?modules",
+          "css-loader",
           {
             loader: 'postcss-loader',
             options: {plugins: [require("autoprefixer")("last 100 versions")]}

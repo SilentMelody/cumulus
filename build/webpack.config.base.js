@@ -4,7 +4,7 @@ module.exports = {
   entry: '@/index.js',
   output: {
     path: path.resolve(__dirname, "../dist"),//编译输出的文件目录绝对路径
-    filename: "js/index.js",//文件名
+    filename: "js/[name].js",//文件名
     publicPath: "/"//引入资源文件的前缀公共路径
   },
   resolve: {

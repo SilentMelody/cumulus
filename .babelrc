@@ -17,6 +17,11 @@
   },
   "plugins": [
     "transform-runtime",
-    "babel-plugin-dynamic-import-webpack"
+    "syntax-dynamic-import",
+    ["import", {
+      "libraryName": "antd",
+      "libraryDirectory": "es",
+      "style": "css"
+    }]
   ]
 }
