@@ -5,10 +5,12 @@ const path = require('path')
 const mysql = require('mysql')
 const dbConfig = require('./dbConfig')
 const history = require('connect-history-api-fallback')
+const compression = require('compression')
 
 const bindUserController = require('./controller/user')
 const bindNoteController = require('./controller/note')
 const bindFileController = require('./controller/file')
+
 let connection = mysql.createConnection(dbConfig)
 connection.on('error', function(err) {
     console.log('mysql connection error ==> ', err.code, err.message);
@@ -24,6 +26,8 @@ app.use((req, res, next) => {
     console.log('req ====>', req.path)
     next()
 })
+
+app.use(compression()); // 尽量在其他中间件前使用compression
 app.use(history())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
