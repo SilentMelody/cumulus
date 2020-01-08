@@ -16,8 +16,7 @@
     }
   },
   "plugins": [
-    ["import", { "libraryName": "antd", "libraryDirectory": "es", "style":"css"}, "ant"],
-    ["import", { "libraryName": "ant-mobile", "libraryDirectory": "lib"}, "ant-mobile"],
-    "transform-runtime"
+    "transform-runtime",
+    "babel-plugin-dynamic-import-webpack"
   ]
 }

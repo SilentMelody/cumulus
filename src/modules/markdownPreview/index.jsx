@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import _showdown from 'showdown'
-import showdownHighlight from 'showdown-highlight'
+const showdownHighlight = () => import('showdown-highlight');
 import './index.less'
 // import './lostkeys/lostkeys.css'
 function MarkdownPreview(props) {

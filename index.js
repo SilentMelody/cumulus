@@ -7,7 +7,7 @@ import RouterCore from './src/router/index.jsx'
 
 import './src/style/less/base.less'
 import './src/style/less/mixins.less'
-import 'antd/dist/antd.less'
+// import 'antd/dist/antd.less'
 
 console.log(process.env.NODE_ENV)
 

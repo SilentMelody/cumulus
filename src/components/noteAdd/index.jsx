@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import '../../style/less/noteAdd.less'
-import { Cascader } from 'antd'
+// import { Cascader } from 'antd'
 
 import MarkdownPreview from '../../modules/markdownPreview/index.jsx'
 import MarkdownEditor from '../../modules/markdownEditor/index.jsx'
@@ -73,11 +73,11 @@ function NoteAddPage(props) {
   return (
     <div id="note-add-page">
       标题：<input type="text" onChange={(e) => setTitle(e.target.value)}/>
-      <Cascader
-        options={classifyOptions}
-        expandTrigger="hover"
-        onChange={onClassifyChange}
-      />
+      {/*<Cascader*/}
+      {/*  options={classifyOptions}*/}
+      {/*  expandTrigger="hover"*/}
+      {/*  onChange={onClassifyChange}*/}
+      {/*/>*/}
       <div className="nav-content">
         <MarkdownEditor onUploadImg={imgUpload} textChange={(value) => setNoteData(value)}></MarkdownEditor>
         <MarkdownPreview text={noteData}></MarkdownPreview>

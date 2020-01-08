@@ -1,22 +1,35 @@
 const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
-const BundleAnalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 const baseWebpackConfig = require('./webpack.config.base')
-//样式文件分别打包
-const ExtractTextPluginCss = new ExtractTextPlugin('css/[name]/[name]-one.[chunkhash].css')
-const ExtractTextPluginScss = new ExtractTextPlugin('css/[name]/[name]-two.[chunkhash].css')
-const ExtractTextPluginLess = new ExtractTextPlugin('css/[name]/[name]-three.[chunkhash].css')
 
 const env = require('../config/' + process.env.env_config + '.env.js')
 console.log("==========>" + process.env.env_config)
 
 const webpackConfig = merge(baseWebpackConfig, {
-  mode: 'production',
+  mode: 'development',
+  module: {
+    rules: [
+      {
+        test: /\.css/,
+        use: [
+          MiniCssExtractPlugin.loader, "css-loader",
+          {
+            loader: 'postcss-loader',
+            options: {plugins: [require("autoprefixer")("last 100 versions")]}
+          }
+        ]
+      },
+      {
+        test:/\.less$/,
+        use:[MiniCssExtractPlugin.loader, 'css-loader', 'less-loader']
+      },
+    ]
+  },
   plugins: [
     new webpack.DefinePlugin({
       'process.env': env
@@ -31,9 +44,10 @@ const webpackConfig = merge(baseWebpackConfig, {
         dry: false//启用删除文件（不要删除任何东西，主要用于测试），true表示不删除，false表示删除
       }
     ),
-    ExtractTextPluginCss,
-    ExtractTextPluginScss,
-    ExtractTextPluginLess,
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+      chunkFilename: "[id].css"
+    }),
     new HtmlWebpackPlugin({
       template: "index.html",//模板
       filename: "index.html",//文件名
