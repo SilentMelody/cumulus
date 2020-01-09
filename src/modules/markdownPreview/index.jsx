@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import _showdown from 'showdown'
 import showdownHighlight from 'showdown-highlight';
-import './index.less'
+import './github-markdown.less'
 
 const converter = new _showdown.Converter(
     {extensions: [showdownHighlight]}
