@@ -23,8 +23,9 @@ app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, '../dist')))
 app.use(express.static(path.join(__dirname, '../static')))
 
+let connection = null;
 const handleConnection = () => {
-    let connection = mysql.createConnection(dbConfig)
+    connection = mysql.createConnection(dbConfig)
     //连接错误，2秒重试
     connection.connect(function(err) {
         if (err) {
@@ -41,10 +42,14 @@ const handleConnection = () => {
             console.log('其他异常 ====> ' + err.message)
         }
     })
-    bindUserController(app, connection)
-    bindNoteController(app, connection)
-    bindFileController(app, connection)
 }
 handleConnection()
+const getConnection = () => {
+    return connection
+}
+
+bindUserController(app, getConnection)
+bindNoteController(app, getConnection)
+bindFileController(app, getConnection)
 
 app.listen(80)

@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
 // 通过 storage 选项来对 上传行为 进行定制化
 const upload = multer({ storage: storage })
 
-module.exports = (app, connection) => {
-  const noteService = require('../service/file')(connection)
+module.exports = (app, getConnection) => {
+  const noteService = require('../service/file')(getConnection)
   app.post('/cumulus/file/uploadImg', upload.single('img'), noteService.uploadImg)
 }

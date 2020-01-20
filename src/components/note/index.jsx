@@ -5,6 +5,7 @@ import MarkdownPreview from '../../modules/markdownPreview/index.jsx'
 import MarkdownEditor from '../../modules/markdownEditor/index.jsx'
 import PageList from "../../modules/pageList/index.jsx";
 import NoteCard from "../../modules/noteCard/index.jsx";
+import {instanceOf} from "prop-types";
 
 function NotePage(props) {
 
@@ -19,11 +20,11 @@ function NotePage(props) {
   }, []);
 
   useEffect(() => {
-    allNoteInfoInit();
+    (noteList instanceof Array) && noteList.length > 0 && allNoteInfoInit();
   }, [noteList]);
 
   useEffect(() => {
-    allNoteInfoInit();
+    (noteClassifyList instanceof Array) && noteClassifyList.length > 0 && allNoteInfoInit();
   }, [noteClassifyList]);
 
   const selectAllNote = () => {

@@ -1,7 +1,8 @@
-module.exports = (connection) => {
+module.exports = (getConnection) => {
   return {
     selectAll: (req, res) => {
       const sql = `SELECT * FROM note ORDER BY id ASC`
+      const connection = getConnection();
       connection.query(sql, function(error, results, fields) {
         if (error) {
           console.log(error)
@@ -13,6 +14,7 @@ module.exports = (connection) => {
     },
     selectClassify: (req, res) => {
       const sql = `SELECT * FROM classify ORDER BY level ASC`
+      const connection = getConnection();
       connection.query(sql, function(error, results, fields) {
         if (error) {
           console.log(error)
@@ -25,6 +27,7 @@ module.exports = (connection) => {
     add: (req, res) => {
       const {title, text, classifyId} = req.body
       const sql = `INSERT INTO note ( title, text, date, classify_id ) VALUES ( '${title}', '${text}', '2019-10-12 11:25:09', ${classifyId} );`
+      const connection = getConnection();
       connection.query(sql, function(error, results, fields) {
         if (error) {
           console.log(error)

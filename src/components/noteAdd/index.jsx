@@ -19,7 +19,7 @@ function NoteAddPage(props) {
       level2: [],
       level3: []
     }
-    noteClassifyList.map((item, index) => {
+    (noteClassifyList instanceof Array) && (noteClassifyList.length > 0) && noteClassifyList.map((item, index) => {
       classify['level' + item.level].push(item)
     })
     console.log(classify)
@@ -27,7 +27,7 @@ function NoteAddPage(props) {
 
   const initClassifyOptions = () => {
     const classifyOptions = [];
-    noteClassifyList.map((item, index) => {
+    (noteClassifyList instanceof Array) && (noteClassifyList.length > 0) && noteClassifyList.map((item, index) => {
       const option = {
         value: item.id,
         label: item.title,
