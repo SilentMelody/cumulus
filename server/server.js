@@ -52,4 +52,4 @@ bindUserController(app, getConnection)
 bindNoteController(app, getConnection)
 bindFileController(app, getConnection)
 
-app.listen(80)
+app.listen(8888)
