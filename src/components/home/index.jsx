@@ -18,6 +18,7 @@ function Home(props) {
           <span>积云，积少成多</span>
         </div>
       </div>
+      <a className="bottom-beian" rel="nofollow" href="http://www.beian.miit.gov.cn" target="_blank">晋ICP备19011042号-1</a>
       <div className="sign">
         @李志豪
       </div>
