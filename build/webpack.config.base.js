@@ -1,16 +1,11 @@
 const path = require('path')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-//样式文件分别打包
-const ExtractTextPluginCss = new ExtractTextPlugin('css/[name]/[name]-one.css')
-const ExtractTextPluginScss = new ExtractTextPlugin('css/[name]/[name]-two.css')
-const ExtractTextPluginLess = new ExtractTextPlugin('css/[name]/[name]-three.css')
 
 module.exports = {
   entry: '@/index.js',
   output: {
     path: path.resolve(__dirname, "../dist"),//编译输出的文件目录绝对路径
-    filename: "js/index.js",//文件名
-    publicPath: "./"//引入资源文件的前缀公共路径
+    filename: "js/[name].js",//文件名
+    publicPath: "/"//引入资源文件的前缀公共路径
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.css', '.less'],
@@ -41,29 +36,6 @@ module.exports = {
         test: /\.js|jsx$/,
         use: ['babel-loader'],
         exclude: /node_modules/
-      },
-      {
-        test: /\.css/,
-        use: ExtractTextPluginCss.extract({
-          use: [
-            {
-              loader: "css-loader?modules",
-              // options: {importLoaders: 1}//1代表css-loader后还需要几个loader
-            },
-            {
-              loader: 'postcss-loader',
-              options: {plugins: [require("autoprefixer")("last 100 versions")]}
-            }
-          ],
-          fallback: "style-loader"
-        })
-      },
-      {
-        test:/\.less$/,
-        use:ExtractTextPluginLess.extract({ //分离less编译后的css文件
-          fallback:'style-loader',
-          use:['css-loader','less-loader']
-        })
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,

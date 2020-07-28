@@ -66,8 +66,10 @@ function NoteAddPage(props) {
   }, [])
 
   useEffect(() => {
-    initClassify()
-    initClassifyOptions()
+    if ((noteClassifyList instanceof Array) && (noteClassifyList.length > 0)) {
+      initClassify()
+      initClassifyOptions()
+    }
   }, [noteClassifyList])
 
   return (

@@ -1,13 +1,8 @@
 const webpack = require('webpack')
 const merge = require('webpack-merge')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const baseWebpackConfig = require('./webpack.config.base')
-//样式文件分别打包
-const ExtractTextPluginCss = new ExtractTextPlugin('css/[name]/[name]-one.css')
-const ExtractTextPluginScss = new ExtractTextPlugin('css/[name]/[name]-two.css')
-const ExtractTextPluginLess = new ExtractTextPlugin('css/[name]/[name]-three.css')
 
 const env = require('../config/' + process.env.env_config + '.env.js')
 console.log("==========>" + process.env.env_config)
@@ -15,6 +10,25 @@ console.log("==========>" + process.env.env_config)
 const webpackConfig = merge(baseWebpackConfig, {
   mode: "development",
   devtool: "cheap-module-source-map",
+  module: {
+    rules: [
+      {
+        test: /\.css/,
+        use: [
+          'style-loader',
+          "css-loader",
+          {
+            loader: 'postcss-loader',
+            options: {plugins: [require("autoprefixer")("last 100 versions")]}
+          }
+        ]
+      },
+      {
+        test:/\.less$/,
+        use:['style-loader', 'css-loader','less-loader']
+      },
+    ]
+  },
   devServer: {
     clientLogLevel: "error",//日志级别，可能的值有 none, error, warning 或者 info（默认值）。
     contentBase: false,//告诉服务器从哪里提供内容。只有在你想要提供静态文件时才需要
@@ -46,9 +60,6 @@ const webpackConfig = merge(baseWebpackConfig, {
       'process.env': env
     }),
     new webpack.HotModuleReplacementPlugin(),//实现页面自动刷新，与hot：true配对使用
-    ExtractTextPluginCss,
-    ExtractTextPluginScss,
-    ExtractTextPluginLess,
     new HtmlWebpackPlugin({
       template: "index.html",//模板
       filename: "index.html",//文件名

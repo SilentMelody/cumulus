@@ -1,18 +1,19 @@
 import React, {useEffect} from 'react'
 import _showdown from 'showdown'
 import showdownHighlight from 'showdown-highlight'
-import './index.less'
-// import './lostkeys/lostkeys.css'
+// import './index.less'
+import './them/darcula.min.css'
+
+const converter = new _showdown.Converter(
+    {extensions: [showdownHighlight]}
+)
+
 function MarkdownPreview(props) {
   const {text} = props
-
-  const converter = new _showdown.Converter(
-    {extensions: [showdownHighlight]}
-  )
-  const html = converter.makeHtml(text);
+  const html = converter.makeHtml(text)
 
   useEffect(() => {
-    console.log('useEffect......');
+    console.log('useEffect......')
   })
 
   return (

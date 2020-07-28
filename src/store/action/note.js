@@ -4,7 +4,7 @@ import {axiosGet, axiosPost} from '../../plugins/api'
 
 // 查询所有笔记
 export const selectAll = () => dispatch => {
-  axiosGet('/note/selectAll', {}).then(data => {
+  axiosGet('note/selectAll', {}).then(data => {
     dispatch({
       type: ActionTypes.NOTE_SELECT_ALL,
       payload: data.data.body
@@ -16,7 +16,7 @@ export const selectAll = () => dispatch => {
 
 // 查询所有笔记分类
 export const selectClassify = () => dispatch => {
-  axiosGet('/note/selectClassify', {}).then(data => {
+  axiosGet('note/selectClassify', {}).then(data => {
     dispatch({
       type: ActionTypes.NOTE_CLASSIFY_SELECT,
       payload: data.data.body

@@ -1,23 +1,35 @@
 const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
-const BundleAnalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 const baseWebpackConfig = require('./webpack.config.base')
-//样式文件分别打包
-const ExtractTextPluginCss = new ExtractTextPlugin('css/[name]/[name]-one.[chunkhash].css')
-const ExtractTextPluginScss = new ExtractTextPlugin('css/[name]/[name]-two.[chunkhash].css')
-const ExtractTextPluginLess = new ExtractTextPlugin('css/[name]/[name]-three.[chunkhash].css')
 
 const env = require('../config/' + process.env.env_config + '.env.js')
 console.log("==========>" + process.env.env_config)
 
 const webpackConfig = merge(baseWebpackConfig, {
   mode: 'production',
-  devtool: 'cheap-module-source-map',
+  module: {
+    rules: [
+      {
+        test: /\.css/,
+        use: [
+          MiniCssExtractPlugin.loader, "css-loader",
+          {
+            loader: 'postcss-loader',
+            options: {plugins: [require("autoprefixer")("last 100 versions")]}
+          }
+        ]
+      },
+      {
+        test:/\.less$/,
+        use:[MiniCssExtractPlugin.loader, 'css-loader', 'less-loader']
+      },
+    ]
+  },
   plugins: [
     new webpack.DefinePlugin({
       'process.env': env
@@ -32,14 +44,15 @@ const webpackConfig = merge(baseWebpackConfig, {
         dry: false//启用删除文件（不要删除任何东西，主要用于测试），true表示不删除，false表示删除
       }
     ),
-    ExtractTextPluginCss,
-    ExtractTextPluginScss,
-    ExtractTextPluginLess,
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+      chunkFilename: "[name].css"
+    }),
     new HtmlWebpackPlugin({
       template: "index.html",//模板
       filename: "index.html",//文件名
       inject: true,//true: 默认值,script标签位于html文件的body底部body:script标签位于html文件的body底部head: script标签位于html文件的head中false: 不插入生成的js文件，这个几乎不会用到的
-      chunks: ["manifest", "vendors", "index"],// 页面模板需要加对应的js脚本，如果不加这行则每个页面都会引入所有的js脚本
+      // chunks: ["manifest", "vendors", "index"],// 页面模板需要加对应的js脚本，如果不加这行则每个页面都会引入所有的js脚本
       minify: { // 压缩 HTML 的配置
         collapseWhitespace: true,
         removeComments: true,
@@ -48,7 +61,6 @@ const webpackConfig = merge(baseWebpackConfig, {
     }),
   ],
   optimization: {
-    minimize: false,
     splitChunks: {
       chunks: 'all',//表示显示块的范围，有三个可选值：initial(初始块)、async(按需加载块)、all(全部块)(default=all)
       name: true,//拆分出来块的名字(Chunk Names)，默认由块名和hash值自动生成；

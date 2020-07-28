@@ -1,4 +1,4 @@
-module.exports = (connection) => {
+module.exports = () => {
   return {
     uploadImg: (req, res) => {
       let file = req.file

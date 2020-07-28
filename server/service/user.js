@@ -1,8 +1,9 @@
-module.exports = (connection) => {
+module.exports = (getConnection) => {
   return {
     login: (req, res) => {
 
       const sql = `SELECT * FROM user WHERE user_name = "${req.body.u_name}"`
+      const connection = getConnection();
       connection.query(sql, function(error, results, fields) {
         if (error) {
           console.log(error)
